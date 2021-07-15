@@ -23,7 +23,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import RestaurantMenu from "@material-ui/icons/RestaurantMenu";
 import ShoppingCart from "@material-ui/icons/ShoppingCart";
 import Category from "./Category";
-import Orders from "../orders/Ordes";
+import Orders from "../feature/orders/Ordes";
 import Cart from "./Cart";
 import { useEffect } from "react";
 import { Data, OrdersItem } from "../model";

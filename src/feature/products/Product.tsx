@@ -3,7 +3,7 @@ import { createStyles, Theme, makeStyles } from "@material-ui/core/styles";
 import { Button, TextField } from "@material-ui/core";
 import { Typography } from "@material-ui/core";
 import { Card } from "@material-ui/core";
-import { ProductModel, OrdersItem } from "../model";
+import { ProductModel, OrdersItem } from "../../model";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-type ProductProps = {
+export type ProductProps = {
   data: ProductModel;
   addItem: Function;
 };
@@ -53,36 +53,36 @@ function Product(props: ProductProps) {
   };
 
   return (
-    <Card className={classes.root}>
-      <Typography className={classes.addButton}>
-        {product && product.name}
-      </Typography>
-      <Typography className={classes.addButton}>
-        Price : Rs {product && product.list_price}
-      </Typography>
-      {product.discount && (
+    product && (
+      <Card className={classes.root}>
+        <Typography className={classes.addButton}>{product.name}</Typography>
         <Typography className={classes.addButton}>
-          Discount : {product.discount + +product.discount_unit}
+          Price : Rs {product.list_price}
         </Typography>
-      )}
-      <TextField
-        className={classes.addButton}
-        label="Quantiy"
-        variant="outlined"
-        type="number"
-        value={quantity}
-        size="small"
-        onChange={onChange}
-      ></TextField>
-      <Button
-        className={classes.addButton}
-        color="primary"
-        variant="outlined"
-        onClick={onAddClick}
-      >
-        Add
-      </Button>
-    </Card>
+        {product.discount && (
+          <Typography className={classes.addButton}>
+            Discount : {product.discount + +product.discount_unit}
+          </Typography>
+        )}
+        <TextField
+          className={classes.addButton}
+          label="Quantiy"
+          variant="outlined"
+          type="number"
+          value={quantity}
+          size="small"
+          onChange={onChange}
+        ></TextField>
+        <Button
+          className={classes.addButton}
+          color="primary"
+          variant="outlined"
+          onClick={onAddClick}
+        >
+          Add
+        </Button>
+      </Card>
+    )
   );
 }
 

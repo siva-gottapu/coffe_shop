@@ -41,7 +41,7 @@ export enum OrderStatus {
   CANCELLED,
 }
 
-export type Orders = {
+export type OrdersModel = {
   id: number;
   customer_id: number;
   order_status: OrderStatus;
