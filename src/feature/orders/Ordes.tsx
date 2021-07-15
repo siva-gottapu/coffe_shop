@@ -2,6 +2,7 @@ import React from "react";
 import { createStyles, Theme, makeStyles } from "@material-ui/core/styles";
 import ListItem from "@material-ui/core/ListItem";
 import { List, ListItemText } from "@material-ui/core";
+import { OrdersModel } from "../../model";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -17,15 +18,19 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-function Orders(props: any) {
+type OrdersProps = {
+  orders: OrdersModel[];
+};
+
+function Orders(props: OrdersProps) {
   const classes = useStyles();
 
   const orderList = () => {
     if (props.orders) {
-      const items = props.orders.map((text: any) => {
+      const items = props.orders.map((order: OrdersModel) => {
         return (
-          <ListItem button key={text}>
-            <ListItemText primary={text} />
+          <ListItem button key={order.id}>
+            <ListItemText primary={order.id} />
           </ListItem>
         );
       });

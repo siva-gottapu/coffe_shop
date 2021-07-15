@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { createStyles, Theme, makeStyles } from "@material-ui/core/styles";
 import ListItem from "@material-ui/core/ListItem";
 import { List, ListItemText } from "@material-ui/core";
-import Product from "../products/Product";
+import Product from "../feature/products/Product";
 import { CategoryModel, Data, ProductModel } from "../model";
 
 const useStyles = makeStyles((theme: Theme) =>
