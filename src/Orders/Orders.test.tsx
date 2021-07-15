@@ -1,13 +1,12 @@
 import React from "react";
-import { shallow } from "enzyme";
-import App from "./App";
 import Enzyme from "enzyme";
+import { shallow } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
-
+import Ordes from "./Ordes";
 Enzyme.configure({ adapter: new Adapter() });
 
-describe("App component", () => {
+describe("Ordes component", () => {
   it("renders correct structure", () => {
-    expect(shallow(<App />)).toMatchSnapshot();
+    expect(shallow(<Ordes />)).toMatchSnapshot();
   });
 });

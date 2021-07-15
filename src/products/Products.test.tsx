@@ -1,13 +1,12 @@
 import React from "react";
-import { shallow } from "enzyme";
-import App from "./App";
 import Enzyme from "enzyme";
+import { shallow } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
-
+import Product from "./Product";
 Enzyme.configure({ adapter: new Adapter() });
 
-describe("App component", () => {
+describe("Product component", () => {
   it("renders correct structure", () => {
-    expect(shallow(<App />)).toMatchSnapshot();
+    expect(shallow(<Product data={{}} />)).toMatchSnapshot();
   });
 });
