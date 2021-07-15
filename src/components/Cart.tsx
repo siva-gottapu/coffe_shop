@@ -3,7 +3,7 @@ import { createStyles, Theme, makeStyles } from "@material-ui/core/styles";
 import ListItem from "@material-ui/core/ListItem";
 import { Typography } from "@material-ui/core";
 import { Card } from "@material-ui/core";
-import { Amount, OrdersItem } from "../model";
+import { Amount, Discount, OrdersItem } from "../model";
 import OrdeerUtil from "../util/OrderUtil";
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -32,7 +32,12 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-function Cart(props: any) {
+type CartProps = {
+  cart: OrdersItem[];
+  discounts: Discount[];
+};
+
+function Cart(props: CartProps) {
   const classes = useStyles();
   let amount: Amount = {} as Amount;
   const cartItems = () => {
@@ -82,8 +87,7 @@ function Cart(props: any) {
             </div>
             <div className={classes.amount}>
               <Typography>
-                {" "}
-                -------------------------------------------------------------------------------{" "}
+                -------------------------------------------------------------------------------
               </Typography>
             </div>
             <div className={classes.amount}>
@@ -94,8 +98,7 @@ function Cart(props: any) {
         </>
       ) : (
         <Typography color="secondary" style={{ margin: "20px" }}>
-          {" "}
-          Add items to cart...
+          Add items to cart
         </Typography>
       )}
     </div>

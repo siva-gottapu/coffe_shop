@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import { useState } from "react";
 import clsx from "clsx";
 import {
   createStyles,
@@ -23,9 +23,10 @@ import ListItemText from "@material-ui/core/ListItemText";
 import RestaurantMenu from "@material-ui/icons/RestaurantMenu";
 import ShoppingCart from "@material-ui/icons/ShoppingCart";
 import Category from "./Category";
-import Orders from "../Orders/Ordes";
+import Orders from "../orders/Ordes";
 import Cart from "./Cart";
 import { useEffect } from "react";
+import { Data, OrdersItem } from "../model";
 
 const drawerWidth = 240;
 
@@ -93,11 +94,6 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-type Data = {
-  categories: [];
-  discount: [];
-};
-
 function MiniDrawer() {
   const classes = useStyles();
   const theme = useTheme();
@@ -105,7 +101,7 @@ function MiniDrawer() {
   const [item, setItem] = useState(0);
   const [data, setData] = useState({} as Data);
   const [orders, addOrder] = useState([]);
-  const [orderCart, setOrderCart] = useState([] as any);
+  const [orderCart, setOrderCart] = useState([] as OrdersItem[]);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -126,15 +122,12 @@ function MiniDrawer() {
       })
       .then(function (data) {
         // store Data in State Data Variable
-        console.log(data, " data");
         setData((state) => data);
       })
-      .catch(function (err) {
-        console.log(err, " error");
-      });
+      .catch(function (err) {});
   }, []);
 
-  const upsert = (array: any, item: any) => {
+  const upsert = (array: OrdersItem[], item: OrdersItem) => {
     const i = array.findIndex(
       (_item: any) => _item.product_id === item.product_id
     );
@@ -143,7 +136,7 @@ function MiniDrawer() {
     return array;
   };
 
-  const addItemtoOrder = (product: any) => {
+  const addItemtoOrder = (product: OrdersItem) => {
     let updateData = upsert(orderCart, product);
     setOrderCart([...updateData]);
   };
@@ -216,7 +209,7 @@ function MiniDrawer() {
         <div className={classes.toolbar} />
         {item === 0 ? (
           <div style={{ display: "flex" }}>
-            <Category data={data} addItem={addItemtoOrder} />{" "}
+            <Category data={data} addItem={addItemtoOrder} />
             <Cart cart={orderCart} discounts={data.discount} />
           </div>
         ) : (

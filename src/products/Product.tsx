@@ -1,8 +1,6 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { createStyles, Theme, makeStyles } from "@material-ui/core/styles";
-import ListItem from "@material-ui/core/ListItem";
-import clsx from "clsx";
-import { Button, List, ListItemText, TextField } from "@material-ui/core";
+import { Button, TextField } from "@material-ui/core";
 import { Typography } from "@material-ui/core";
 import { Card } from "@material-ui/core";
 import { ProductModel, OrdersItem } from "../model";
@@ -25,10 +23,15 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-function Product(props: any) {
+type ProductProps = {
+  data: ProductModel;
+  addItem: Function;
+};
+
+function Product(props: ProductProps) {
   const classes = useStyles();
   const [quantity, setQuantity] = useState(1);
-  const [orderItem, setOrderItem] = useState({} as OrdersItem);
+  let orderItem = {} as OrdersItem;
 
   let product: ProductModel = props.data;
   const onChange = (e: any) => {
@@ -52,11 +55,10 @@ function Product(props: any) {
   return (
     <Card className={classes.root}>
       <Typography className={classes.addButton}>
-        {" "}
         {product && product.name}
       </Typography>
       <Typography className={classes.addButton}>
-        Price : Rs {product && product.list_price}{" "}
+        Price : Rs {product && product.list_price}
       </Typography>
       {product.discount && (
         <Typography className={classes.addButton}>

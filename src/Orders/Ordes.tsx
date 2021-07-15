@@ -21,7 +21,6 @@ function Orders(props: any) {
   const classes = useStyles();
 
   const orderList = () => {
-    console.log("orders ", props.orders);
     if (props.orders) {
       const items = props.orders.map((text: any) => {
         return (

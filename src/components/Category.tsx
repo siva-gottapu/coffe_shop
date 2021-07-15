@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { createStyles, Theme, makeStyles } from "@material-ui/core/styles";
 import ListItem from "@material-ui/core/ListItem";
-import clsx from "clsx";
 import { List, ListItemText } from "@material-ui/core";
 import Product from "../products/Product";
-import { CategoryModel, ProductModel } from "../model";
-import { useCallback } from "react";
+import { CategoryModel, Data, ProductModel } from "../model";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -37,17 +35,22 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-function Category(props: any) {
+type CategoryProps = {
+  data: Data;
+  addItem: Function;
+};
+
+function Category(props: CategoryProps) {
   const classes = useStyles();
   const [selCat, setSelCat] = useState({} as CategoryModel);
 
-  const menuClick = (cat: any) => {
+  const menuClick = (cat: CategoryModel) => {
     setSelCat(cat);
   };
   const categoryList = () => {
     let categories = props.data.categories;
     if (categories) {
-      const items = categories.map((cat: any) => {
+      const items = categories.map((cat: CategoryModel) => {
         return (
           <ListItem
             button
